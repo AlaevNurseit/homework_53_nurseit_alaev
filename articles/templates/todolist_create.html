@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card my-5">
+        <div class="card-header fs-4 text-center py-3">Создание задачи</div>
+        <div class="card-body">
+            <form id="article-form" action="" method="POST">
+                {% csrf_token %}
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Описание">
+                    <label for="description">Описание</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="more_detailed_description" name="more_detailed_description" placeholder="более подробное описание">
+                    <label for="description">более подробное описание</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" id="status" name="status">
+                        {% for value, label in status_choices %}
+                            <option value="{{ value }}">{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="status">Статус</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="author" name="execution_date"
+                           placeholder="Дата выполнения">
+                    <label for="author">дата выполнения</label>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-end py-3">
+            <button type="submit" form="article-form" class="btn btn-sm btn-primary">Сохранить</button>
+        </div>
+    </div>
+{% endblock %}

@@ -1,33 +1,11 @@
-{% load static %}
+{% extends "base.html" %}
+{% block nav %}
+     <a class="nav-link" href="/todolist/add/">Добавить новую задачу</a>
+{% endblock %}
+{% block content %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-          rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-          crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Title</title>
-</head>
-<body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="/todolist/">список задач</a>
-            </div>
-        </div>
-    </div>
-</nav>
-<div class="container">
-    <div class="border rounded-3 my-4 d-flex justify-content-between p-3">
+    <div class="border rounded-3 my-4 p-3">
         <h1>задачи</h1>
-        <a class="btn btn-sm btn-outline-primary fs-5 px-3 lh-lg" href="/todolist/add/">Добавить новую задачу</a>
     </div>
     <div class="row row-cols-md-3 g-4">
         {% for todolist in todolists %}
@@ -39,7 +17,7 @@
                     </div>
                     <div class="card-body text-secondary d-flex flex-column">
                         <p class="card-text">Статус: {{ todolist.status }}</p>
-                        <a href="/todolist/detail/?id={{ todolist.id }}" class="card-link mt-auto ms-auto">Посмотреть подробнее</a>
+                        <a href="{% url 'todolist_detail' todolist.id %}" class="card-link mt-auto ms-auto">Посмотреть подробнее</a>
                     </div>
                 </div>
             </div>
@@ -47,10 +25,4 @@
             <p>Нет задач</p>
         {% endfor %}
     </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-</body>
-</html>
+{% endblock %}

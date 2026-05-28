@@ -1,6 +1,7 @@
-from django.http import HttpResponseRedirect
+from django.http import  HttpResponseNotFound
 from django.shortcuts import render
 from articles.models import ToDolist
+from django.shortcuts import redirect
 
 
 def todolist_list(request):
@@ -9,16 +10,13 @@ def todolist_list(request):
     return render(request, "index.html", context)
 
 
-def todolist_detail(request):
-    id = request.GET.get('id')
-    if id:
-        try:
-            todolist = ToDolist.objects.get(id=int(id))
-            context = {'todolist': todolist}
-            return render(request, "todolist_view.html", context)
-        except ToDolist.DoesNotExist:
-            return HttpResponseRedirect("/todolist/")
-    return HttpResponseRedirect("/todolist/")
+def todolist_detail(request, pk):
+    try:
+        todolist = ToDolist.objects.get(id=pk)
+        context = {'todolist': todolist}
+        return render(request, "todolist_view.html", context)
+    except ToDolist.DoesNotExist:
+        return HttpResponseNotFound()
 
 def todolist_create(request):
     if request.method == 'GET':
@@ -27,7 +25,8 @@ def todolist_create(request):
     elif request.method == 'POST':
         ToDolist.objects.create(
             description=request.POST.get("description"),
+            more_detailed_description = request.POST.get("more_detailed_description"),
             status=request.POST.get("status"),
             execution_date=request.POST.get("execution_date") or None,
         )
-        return HttpResponseRedirect("/todolist/")
+        return redirect("/todolist/")

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block nav %}
+     <a class="nav-link" href="/todolist/add/">Добавить новую задачу</a>
+{% endblock %}
+{% block content %}
+
+    <div class="card my-5">
+        <div class="card-header fs-4 text-center">{{ todolist.description }}</div>
+        <div class="card-header fs-4 text-center">{{ todolist.more_detailed_description }}</div>
+        <div class="card-body">
+            <p>Статус: {{ todolist.status }}</p>
+            <p>Дата выполнения: {{ todolist.execution_date }}</p>
+        </div>
+    </div>
+{% endblock %}
