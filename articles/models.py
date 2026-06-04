@@ -7,7 +7,7 @@ class ToDolist(models.Model):
         ('done', 'Сделано'),
     ]
     description = models.TextField(null=False, blank=False, verbose_name="описание")
-    status = models.CharField(max_length=300, null=False, blank=False, verbose_name="статус")
+    status = models.CharField(null=False, blank=False, verbose_name="статус")
     execution_date = models.DateField(null=True, blank=True, verbose_name="дата выполнения")
     more_detailed_description = models.TextField(null=True, blank=True, verbose_name="более подробное описание")
 

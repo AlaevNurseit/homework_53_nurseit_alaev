@@ -19,6 +19,14 @@
                         <p class="card-text">Статус: {{ todolist.status }}</p>
                         <a href="{% url 'todolist_detail' todolist.id %}" class="card-link mt-auto ms-auto">Посмотреть подробнее</a>
                     </div>
+                    <div>
+                        <a href="{% url 'todolist_update' todolist.pk%}" class="btn btn-outline-warning btn-sm">
+                            изменить<i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                        <a href="{% url 'todolist_delete' todolist.pk%}" class="btn btn-outline-warning btn-sm">
+                            удалить<i class="fa-regular fa-pen-to-square"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         {% empty %}
