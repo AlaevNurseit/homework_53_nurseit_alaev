@@ -1,0 +1,75 @@
+{#<form id="article-form" action="" method="POST">#}
+{#    {% csrf_token %}#}
+{#    <div class="form-floating mb-3">#}
+{#        <input type="text" class="form-control{% if errors.description %}is-invalid{% endif %}" id="description"#}
+{#               name="description" value="{{ todolist.description }}" placeholder="Описание">#}
+{#        <label for="description">Описание</label>#}
+{#    </div>#}
+{#    <div class="form-floating mb-3">#}
+{#        <input type="text" class="form-control" id="more_detailed_description"#}
+{#               value="{{ todolist.more_detailed_description }}" name="more_detailed_description"#}
+{#               placeholder="более подробное описание">#}
+{#        <label for="description">более подробное описание</label>#}
+{#    </div>#}
+{#    <div class="form-floating mb-3">#}
+{#        <select class="form-select" id="status" name="status">#}
+{#            {% for value, label in status_choices %}#}
+{#                <option value="{{ value }}">{{ label }}</option>#}
+{#            {% endfor %}#}
+{#        </select>#}
+{#        <label for="status">Статус</label>#}
+{#    </div>#}
+{#    <div class="form-floating mb-3">#}
+{#        <input type="text" class="form-control" id="author" value="{{ todolist.execution_date }}" name="execution_date"#}
+{#               placeholder="Дата выполнения">#}
+{#        <label for="author">дата выполнения</label>#}
+{#    </div>#}
+{#</form>#}
+
+<form id="article-form" action="" method="POST">
+{##}
+{#{% csrf_token %}#}
+{##}
+{#{% for error in form.non_field_errors %}#}
+{#    <p class="text-danger fs-6">{{ error }}</p>#}
+{#{% endfor %}#}
+{##}
+{#<p><label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label></p>#}
+{#{% for error in form.description.errors %}#}
+{#    <p class="text-danger fs-6">{{ error }}</p>#}
+{#{% endfor %}#}
+{#<p>{{ form.description }}</p>#}
+{##}
+{#<p><label for="{{ form.more_detailed_description.id_for_label }}">{{ form.more_detailed_description.label }}</label></p>#}
+{#{% for error in form.more_detailed_description.errors %}#}
+{#    <p class="text-danger fs-6">{{ error }}</p>#}
+{#{% endfor %}#}
+{#<p>{{ form.more_detailed_description }}</p>#}
+{##}
+{#<p><label for="{{ form.status.id_for_label }}">{{ form.status.label }}</label></p>#}
+{#{% for error in form.status.errors %}#}
+{#    <p class="text-danger fs-6">{{ error }}</p>#}
+{#{% endfor %}#}
+{#<p>{{ form.status }}</p>#}
+{##}
+{#<p><label for="{{ form.execution_date.id_for_label }}">{{ form.execution_date.label }}</label></p>#}
+{#{% for error in form.execution_date.errors %}#}
+{#    <p class="text-danger fs-6">{{ error }}</p>#}
+{#{% endfor %}#}
+{#<p>{{ form.execution_date }}</p>#}
+{##}
+{##}
+{#</form>#}
+{% csrf_token %}
+{% for error in form.non_field_errors %}
+   <p class="form-error">{{ error }}</p>
+{% endfor %}
+
+{% for field in form %}
+   <p><label for="{{ field.id_for_label }}">{{ field.label }}</label></p>
+   {% for error in field.errors %}
+       <p class="form-error">{{ error }}</p>
+   {% endfor %}
+   <p>{{ field }}</p>
+{% endfor %}
+</form>

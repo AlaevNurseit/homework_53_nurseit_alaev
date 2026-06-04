@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="card my-5">
+        <div class="card-header fs-4 text-center py-3">Изменение задачи</div>
+        <div class="card-body">
+             {% include 'partial/todolist.form.html' with todolist=todolist %}
+        </div>
+        <div class="card-footer text-end py-3">
+            <button type="submit" form="article-form" class="btn btn-sm btn-primary">Сохранить</button>
+        </div>
+    </div>
+{% endblock %}
